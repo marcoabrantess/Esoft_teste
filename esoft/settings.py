@@ -1,13 +1,21 @@
 
 
+import os
 from pathlib import Path
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gli3zo538@cup-l=4lpmro4k+jws74-$g6)@1(k8zaqfq^qj69'
+# Set DJANGO_SECRET_KEY in the environment. Do not commit a real value.
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "").strip()
+if not SECRET_KEY:
+    raise ImproperlyConfigured(
+        "DJANGO_SECRET_KEY is required. See .env.example and export it before starting Django."
+    )
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
