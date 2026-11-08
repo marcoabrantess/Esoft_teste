@@ -1,0 +1,8 @@
+# Real environment files. Commit .env.example only.
+.env
+.env.*
+!.env.example
+
+# Compiled bytecode previously embedded the Django signing key.
+__pycache__/
+*.py[cod]
